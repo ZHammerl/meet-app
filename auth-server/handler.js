@@ -143,7 +143,7 @@ module.exports.getCalendarEvents = async (event) => {
       // getting events from google calendar usin oAuth2Client for authentication
       {
         calendarId: calendar_id,
-        auth: oAuth2Client,
+        auth: OAuth2Client,
         timeMin: new Date().toISOString(),
         singleEvents: true,
         orderBy: 'startTime',
