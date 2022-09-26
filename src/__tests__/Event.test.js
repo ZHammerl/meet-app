@@ -90,6 +90,7 @@ describe('<Event/> component', () => {
     );
   });
 
+
   test('event details collapsed by default', () => {
     expect(EventWrapper.state('show')).toBe(false);
   });

@@ -13,4 +13,6 @@ describe('<EventList/> component', () => {
       mockData.length
     );
   });
+
+  
 });

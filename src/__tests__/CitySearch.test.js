@@ -30,6 +30,7 @@ describe('<CitySearch/> component', () => {
     ).toBe(query);
   });
 
+  
   test('change state when text input changes', () => {
     CitySearchWrapper.setState({
       query: 'Munich',
@@ -93,6 +94,4 @@ describe('<CitySearch/> component', () => {
       suggestions[0]
     );
   });
-
- 
 });
