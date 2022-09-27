@@ -79,6 +79,7 @@ describe('<App/> integration', () => {
       CitySearch
     ).find('.suggestions li');
     await suggestionItems
+
       .at(suggestionItems.length - 1)
       .simulate('click');
     const allEvents = await getEvents();

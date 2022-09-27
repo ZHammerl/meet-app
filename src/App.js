@@ -12,6 +12,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    //make sure it is mounted before populating the state
     this.mounted = true;
     getEvents().then((events) => {
       this.setState({
