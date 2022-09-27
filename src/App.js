@@ -1,19 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
-import { mockData } from './mock-data';
+import { extractLocations, getEvents } from './api';
 import NumberOfEvents from './NumberOfEvents';
 
-function App() {
-  const events = mockData;
-  return (
-    <div className="App">
-      <CitySearch />
-      <NumberOfEvents />
-      <EventList events={events} />
-    </div>
-  );
+class App extends Component {
+  state = {
+    events: [],
+    locations: [],
+  };
+
+  componentDidMount() {
+    this.mounted = true;
+    getEvents().then((events) => {
+      this.setState({
+        events,
+        locations: extractLocations(events),
+      });
+    });
+  }
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+  updateEvents = (location) => {
+    getEvents().then((events) => {
+      const locationEvents =
+        location === 'all'
+          ? events
+          : events.filter(
+              (event) => event.location === location
+            );
+      this.setState({
+        events: locationEvents,
+      });
+    });
+  };
+  render() {
+    // const events = mockData;
+    return (
+      <div className="App">
+        <CitySearch
+          locations={this.state.locations}
+          updateEvents={this.updateEvents}
+        />
+        <NumberOfEvents />
+        <EventList events={this.state.events} />
+      </div>
+    );
+  }
 }
 
 export default App;
