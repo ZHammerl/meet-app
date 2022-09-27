@@ -16,8 +16,8 @@ export const getAccessToken = async () => {
       const results = await axios.get(
         'https://zzzu2v97p1.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url'
       );
-      const { authURL } = results.data;
-      return (window.location.href = authURL);
+      const { authUrl } = results.data;
+      return (window.location.href = authUrl);
     }
     return code && getToken(code);
   }
@@ -30,6 +30,7 @@ const checkToken = async (accessToken) => {
   )
     .then((res) => res.json())
     .catch((error) => error.json());
+
   return result;
 };
 
