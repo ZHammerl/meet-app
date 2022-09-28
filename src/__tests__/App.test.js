@@ -79,11 +79,36 @@ describe('<App/> integration', () => {
       CitySearch
     ).find('.suggestions li');
     await suggestionItems
-
       .at(suggestionItems.length - 1)
       .simulate('click');
     const allEvents = await getEvents();
     expect(AppWrapper.state('events')).toEqual(allEvents);
     AppWrapper.unmount();
   });
+
+  test('App passes "numberOfEvents" state as prop to NumberOfEvents', () => {
+    const AppWrapper = mount(<App />);
+    const AppNumbersState = AppWrapper.state(
+      'numberOfEvents'
+    );
+    expect(AppNumbersState).not.toEqual(undefined);
+    expect(
+      AppWrapper.find(NumberOfEvents).props().numberOfEvents
+    ).toEqual(AppNumbersState);
+    AppWrapper.unmount();
+  });
+
+  test('Change state of "numberOfEvents" when input changes', () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.setState({ numberOfEvents: 5 });
+    const eventNumber = { target: { value: 10 } };
+    AppWrapper.find('.number').simulate(
+      'change',
+      eventNumber
+    );
+    expect(AppWrapper.state('numberOfEvents')).toBe(10);
+    AppWrapper.unmount();
+  });
+
+  test()
 });

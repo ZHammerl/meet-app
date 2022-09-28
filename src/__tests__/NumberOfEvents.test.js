@@ -14,17 +14,17 @@ describe('<NumberOfEvents/> component', () => {
     ).toHaveLength(1);
   });
 
-  test('default number in input is 32', () => {
+  test('default number in input is 20', () => {
     expect(
       NumberOfEventsWrapper.find('.number-input').prop(
         'value'
       )
-    ).toBe(32);
+    ).toBe(20);
   });
 
   test('change state when number input changes', () => {
     NumberOfEventsWrapper.setState({
-      numOfEvents: 32,
+      numberOfEvents: 32,
     });
     const eventNumber = { target: { value: 5 } };
     NumberOfEventsWrapper.find('.number-input').simulate(

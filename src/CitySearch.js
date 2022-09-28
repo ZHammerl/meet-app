@@ -4,11 +4,11 @@ class CitySearch extends Component {
   state = {
     query: '',
     suggestions: [],
-    showSuggestions: undefined,
+    showSuggestions: false,
   };
 
   handleInputChanged = (event) => {
-    const { value } = event.target;
+    const value = event.target.value;
     const suggestions = this.props.locations.filter(
       (location) => {
         return (
