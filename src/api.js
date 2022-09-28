@@ -24,33 +24,35 @@ export const getAccessToken = async () => {
   return accessToken;
 };
 
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
   )
     .then((res) => res.json())
-    .catch((error) => error.json());
+    .catch((err) => err.json());
 
   return result;
 };
 
+//Check if there is a path and build URL with current path or pushState
 const removeQuery = () => {
   if (
     window.history.pushState &&
     window.location.pathname
   ) {
-    var newUrl =
+    let newurl =
       window.location.protocol +
       '//' +
       window.location.host +
       window.location.pathname;
-    window.history.pushState('', '', newUrl);
+
+    window.history.pushState('', '', newurl);
   } else {
-    newUrl =
+    let newurl =
       window.location.protocol +
       '//' +
       window.location.host;
-    window.history.pushState('', '', newUrl);
+    window.history.pushState('', '', newurl);
   }
 };
 
@@ -86,10 +88,8 @@ export const getEvents = async () => {
   const token = await getAccessToken();
   if (token) {
     removeQuery();
-    const url =
-      'https://zzzu2v97p1.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' +
-      '/' +
-      token;
+    const url = `https://zzzu2v97p1.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
+
     const result = await axios.get(url);
     if (result.data) {
       let locations = extractLocations(result.data.events);
