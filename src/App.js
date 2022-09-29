@@ -16,9 +16,10 @@ class App extends Component {
   componentDidMount() {
     //make sure it is mounted before populating the state
     this.mounted = true;
+    const defaultEventNumber = this.state.numberOfEvents;
     getEvents().then((events) => {
       this.setState({
-        events,
+        events: events.slice(0, defaultEventNumber),
         locations: extractLocations(events),
       });
     });
@@ -40,6 +41,8 @@ class App extends Component {
           : events.filter(
               (event) => event.location === location
             );
+      console.log(locationEvents);
+      console.log(eventCount);
       this.setState({
         events: locationEvents.slice(0, eventCount),
         numberOfEvents: eventCount,
