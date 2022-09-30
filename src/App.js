@@ -19,10 +19,12 @@ class App extends Component {
     console.log('component did mount');
     getEvents().then((events) => {
       console.log('component did mount - getEvents');
-      this.setState({
-        events,
-        locations: extractLocations(events),
-      });
+      if (this.mounted) {
+        this.setState({
+          events,
+          locations: extractLocations(events),
+        });
+      }
     });
   }
   componentWillUnmount() {
