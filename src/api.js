@@ -71,10 +71,10 @@ const getToken = async (code) => {
 };
 
 export const extractLocations = (events) => {
-  let extractLocations = events.map(
+  var extractLocations = events.map(
     (event) => event.location
   );
-  let locations = [...new Set(extractLocations)];
+  var locations = [...new Set(extractLocations)];
   return locations;
 };
 
