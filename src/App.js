@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
+import EventList from './components/EventList';
+import CitySearch from './components/CitySearch';
 import { extractLocations, getEvents } from './api';
-import NumberOfEvents from './NumberOfEvents';
+import NumberOfEvents from './components/NumberOfEvents';
+import { Header } from './components/Header';
 
 class App extends Component {
   state = {
@@ -54,6 +55,7 @@ class App extends Component {
     // const events = mockData;
     return (
       <div className="App">
+        <Header />
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}

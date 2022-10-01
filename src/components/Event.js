@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 
 class Event extends Component {
-  state = {
-    show: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+    };
+  }
 
   toggleEventDetails = () => {
     this.setState({ show: !this.state.show });
+  };
+
+  localDate = (date) => {
+    return new Date(date).toLocaleDateString('en-GB', {
+      dateStyle: 'medium',
+    });
+  };
+
+  localTime = (date) => {
+    return new Date(date).toLocaleTimeString().slice(0, 5);
   };
 
   render() {
@@ -14,13 +27,20 @@ class Event extends Component {
     return (
       <div className="event">
         <h2 className="event-title">{event.summary}</h2>
-        <p className="dateTime">
-          {event.start.dateTime} {event.start.timeZone}
+        <div className="dateTime">
+          <b> {this.localDate(event.start.dateTime)}</b>
+          <br />
+          <b> {this.localTime(event.start.dateTime)} </b>(
+          {event.start.timeZone})
+        </div>
+        <p className="location">
+          <b>{event.location}</b>
         </p>
-        <p className="location">{event.location}</p>
         {this.state.show && (
           <div className="details-container">
-            <h4 className="event-about">About event:</h4>
+            <h4 className="event-about">
+              About the event:
+            </h4>
             <a
               href={event.htmlLink}
               target="_blank"
