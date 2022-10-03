@@ -1,0 +1,26 @@
+:root {
+    --primary-color: #83781b;
+    --secondary-color: #95b46a;
+    --tertiary-color: #172815;
+    --text-color-light: #f6fff6;
+  }
+
+  .header {
+    display: block;
+    width: 100%;
+    text-align: justify;
+    padding-left: 35px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    background-color: var(--tertiary-color);
+    color: var(--text-color-light);
+  }
+
+  .title {
+    display: inline;
+    text-align: center;
+    margin-left: 10%;
+    top: 0;
+  }

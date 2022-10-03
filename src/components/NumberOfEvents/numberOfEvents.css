@@ -1,0 +1,16 @@
+:root {
+  --primary-color: #83781b;
+  --secondary-color: #95b46a;
+  --tertiary-color: #172815;
+  --text-color-light: #f6fff6;
+}
+
+.number-input {
+  width: 60px;
+  margin-left: 10px;
+}
+
+.NumberOfEvents {
+  display: float;
+  text-align: right;
+}

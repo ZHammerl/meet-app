@@ -1,5 +1,7 @@
 import React from 'react';
-import logo from '../img/logo_192.jpg';
+import logo from '../../img/logo_192.jpg';
+import './header.css';
+
 export function Header() {
   return (
     <div className="header">
