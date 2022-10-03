@@ -44,7 +44,7 @@ information about an event.
 **Scenario 2: User can expand an event to see its details.**
 
 - **Given:** user found an event that looks interesting and wants to know more
-- **When:** the user clicks on the button (show details) of the event 
+- **When:** the user clicks on the button (show details) of the event
 - **Then:** the user should see the details in an expanded view
 
 **Scenario 3: User can collapse an event to hide its details.**
@@ -60,14 +60,14 @@ that I can see more or fewer events in the events list at once.
 
 **Scenario 1: When user hasn’t specified a number, 32 is the default number.**
 
-- **Given:** the user sees a list of events
+- **Given:** the user opens the app
 - **When:** the user hasn't specified a number of events to be viewed in the events list at once
 - **Then:** the user should see a list of 32 events
 
 **Scenario 2: User can change the number of events they want to see.**
 
-- **Given:** the user sees a list of events
-- **When:** the user wants to see more/less events and changes the number of events to be viewed at once
+- **Given:** the user opens the app
+- **When:** the user changes the number of events to be viewed at once
 - **Then:** the user should see the specified amount of events
 
 ### FEATURE 4: USE THE APP WHEN OFFLINE

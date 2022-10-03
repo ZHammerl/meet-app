@@ -4,6 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import * as atatus from 'atatus-spa';
+
+// Atatus App-Monitoring
+atatus.config('997ba5da4f054dab856a22c86062d34e').install();
+
 
 const root = createRoot(document.getElementById('root'));
 root.render(

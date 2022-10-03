@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
+import EventList from './components/EventList';
+import CitySearch from './components/CitySearch';
 import { extractLocations, getEvents } from './api';
-import NumberOfEvents from './NumberOfEvents';
+import NumberOfEvents from './components/NumberOfEvents';
+import { Header } from './components/Header';
 
 class App extends Component {
   state = {
@@ -16,15 +17,12 @@ class App extends Component {
   componentDidMount() {
     //make sure it is mounted before populating the state
     this.mounted = true;
-    console.log('component did mount');
+    const defaultEventNumber = this.state.numberOfEvents;
     getEvents().then((events) => {
-      console.log('component did mount - getEvents');
-      if (this.mounted) {
-        this.setState({
-          events,
-          locations: extractLocations(events),
-        });
-      }
+      this.setState({
+        events: events.slice(0, defaultEventNumber),
+        locations: extractLocations(events),
+      });
     });
   }
   componentWillUnmount() {
@@ -44,6 +42,8 @@ class App extends Component {
           : events.filter(
               (event) => event.location === location
             );
+      console.log(locationEvents);
+      console.log(eventCount);
       this.setState({
         events: locationEvents.slice(0, eventCount),
         numberOfEvents: eventCount,
@@ -55,6 +55,7 @@ class App extends Component {
     // const events = mockData;
     return (
       <div className="App">
+        <Header />
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}

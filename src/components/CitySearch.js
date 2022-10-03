@@ -21,11 +21,12 @@ class CitySearch extends Component {
     this.setState({ query: value, suggestions });
   };
 
-  handleItemClicked = (suggestion) => {
+  handleItemClick = (suggestion) => {
     this.setState({
       query: suggestion,
       showSuggestions: false,
     });
+    //triggers function of parent component <App/>
     this.props.updateEvents(suggestion);
   };
 
@@ -53,15 +54,22 @@ class CitySearch extends Component {
             <li
               key={suggestion}
               onClick={() =>
-                this.handleItemClicked(suggestion)
+                this.handleItemClick(suggestion)
               }>
               {suggestion}
             </li>
           ))}
           <li
             key="all"
-            onClick={() => this.handleItemClicked('all')}>
+            onClick={() => this.handleItemClick('all')}>
             <b>See all cities</b>
+          </li>
+          <li
+            key="close"
+            onClick={() =>
+              this.setState({ showSuggestions: false })
+            }>
+            x
           </li>
         </ul>
       </div>
