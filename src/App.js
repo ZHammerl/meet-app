@@ -64,22 +64,28 @@ class App extends Component {
     });
   };
   render() {
-    // const events = mockData;
+    const {
+      locations,
+      numberOfEvents,
+      events,
+      offlineText,
+    } = this.state;
+
     return (
       <div className="App">
         <Header />
         <div className="city-number">
           <CitySearch
-            locations={this.state.locations}
+            locations={locations}
             updateEvents={this.updateEvents}
           />
           <NumberOfEvents
             updateEvents={this.updateEvents}
-            numberOfEvents={this.state.numberOfEvents}
+            numberOfEvents={numberOfEvents}
           />
         </div>
         <OfflineAlert text={offlineText} />
-        <EventList events={this.state.events} />
+        <EventList events={events} />
       </div>
     );
   }
