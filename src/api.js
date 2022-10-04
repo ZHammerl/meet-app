@@ -25,13 +25,14 @@ export const getAccessToken = async () => {
 };
 
 export const checkToken = async (accessToken) => {
-  const result = await fetch(
-    `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
-  )
-    .then((res) => res.json())
-    .catch((err) => err.json());
-
-  return result;
+  try {
+    const result = await fetch(
+      `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
+    );
+    return await result.json();
+  } catch (error) {
+    error.json();
+  }
 };
 
 //Check if there is a path and build URL with current path or pushState
@@ -57,17 +58,23 @@ const removeQuery = () => {
 };
 
 const getToken = async (code) => {
-  const encodeCode = encodeURIComponent(code);
-  const { access_token } = await fetch(
-    `https://zzzu2v97p1.execute-api.eu-central-1.amazonaws.com/dev/api/token/${encodeCode}`
-  )
-    .then((res) => {
-      return res.json();
-    })
-    .catch((error) => error);
-  access_token &&
-    localStorage.setItem('access_token', access_token);
-  return access_token;
+  try {
+    const encodeCode = encodeURIComponent(code);
+    const response = await fetch(
+      `https://zzzu2v97p1.execute-api.eu-central-1.amazonaws.com/dev/api/token/${encodeCode}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `HTTP error! status: ${response.status}`
+      );
+    }
+    const { access_token } = await response.json();
+    access_token &&
+      localStorage.setItem('access_token', access_token);
+    return access_token;
+  } catch (error) {
+    error.json();
+  }
 };
 
 export const extractLocations = (events) => {
@@ -84,6 +91,12 @@ export const getEvents = async () => {
   if (window.location.href.startsWith('http://localhost')) {
     NProgress.done();
     return mockData;
+  }
+
+  if (!navigator.online) {
+    const data = localStorage.getItem('lastEvents');
+    NProgress.done();
+    return data ? JSON.parse(events).events : [];
   }
   const token = await getAccessToken();
   if (token) {

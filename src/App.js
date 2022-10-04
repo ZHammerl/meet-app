@@ -17,9 +17,10 @@ class App extends Component {
   componentDidMount() {
     //make sure it is mounted before populating the state
     this.mounted = true;
+    const defaultNumber = this.state.numberOfEvents;
     getEvents().then((events) => {
       this.setState({
-        events: events,
+        events: events.slice(0, defaultNumber),
         locations: extractLocations(events),
       });
     });
