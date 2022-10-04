@@ -6,6 +6,8 @@ import { extractLocations, getEvents } from './api';
 import NumberOfEvents from './components/NumberOfEvents/NumberOfEvents';
 import { Header } from './components/Header/Header';
 
+import { OfflineAlert } from './components/Alert/Alert';
+
 class App extends Component {
   state = {
     events: [],
@@ -24,6 +26,16 @@ class App extends Component {
         locations: extractLocations(events),
       });
     });
+    if (!navigator.onLine) {
+      this.setState({
+        offlineText:
+          "Your're offline! The data was loaded from the cache.",
+      });
+    } else {
+      this.setState({
+        offlineText: '',
+      });
+    }
   }
   componentWillUnmount() {
     this.mounted = false;
@@ -66,6 +78,7 @@ class App extends Component {
             numberOfEvents={this.state.numberOfEvents}
           />
         </div>
+        <OfflineAlert text={offlineText} />
         <EventList events={this.state.events} />
       </div>
     );
