@@ -163,8 +163,4 @@ input[type='number'] {
   }
 }
 
-@media all and (max-width: 712px) {
-  .EventList {
-    grid-template-columns: 1fr;
-  }
-}
+

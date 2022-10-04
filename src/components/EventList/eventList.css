@@ -1,12 +1,17 @@
 :root {
-    --primary-color: #83781b;
-    --secondary-color: #95b46a;
-    --tertiary-color: #172815;
-    --text-color-light: #f6fff6;
-  }
+  --primary-color: #83781b;
+  --secondary-color: #95b46a;
+  --tertiary-color: #172815;
+  --text-color-light: #f6fff6;
+}
 
+.EventList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media all and (max-width: 712px) {
   .EventList {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr;
   }
+}
