@@ -24,9 +24,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    //make sure it is mounted before populating the state
     this.mounted = true;
-    const defaultNumber = this.state.numberOfEvents;
     const accessToken = localStorage.getItem(
       'access_token'
     );
@@ -44,17 +42,23 @@ class App extends Component {
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
+          console.log('getEvents');
           this.setState({
-            events: events.slice(0, defaultNumber),
+            events: events.slice(
+              0,
+              this.state.numberOfEvents
+            ),
             locations: extractLocations(events),
           });
         }
       });
     }
+
     if (!navigator.onLine) {
+      console.log('offline');
       this.setState({
         offlineText:
-          "Your're offline! The data was loaded from the cache.",
+          "Your're offline, so events may not be up to date",
       });
     } else {
       this.setState({
@@ -62,6 +66,7 @@ class App extends Component {
       });
     }
   }
+
   componentWillUnmount() {
     this.mounted = false;
   }
@@ -111,6 +116,13 @@ class App extends Component {
           />
         </div>
         <OfflineAlert text={offlineText} />
+        {!navigator.onLine && (
+          <OfflineAlert
+            text={
+              'You are offline, so events may not be up to date'
+            }
+          />
+        )}
         <EventList events={events} />
         <WelcomeScreen
           showWelcomeScreen={this.state.showWelcomeScreen}

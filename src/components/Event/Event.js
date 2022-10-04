@@ -9,8 +9,8 @@ class Event extends Component {
     };
   }
 
-  toggleEventDetails = () => {
-    this.setState({ show: !this.state.show });
+  toggleEventDetails = (prevState) => {
+    this.setState({ show: !prevState.show });
   };
 
   localDate = (date) => {
