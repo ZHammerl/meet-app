@@ -98,7 +98,6 @@ class App extends Component {
       locations,
       numberOfEvents,
       events,
-      offlineText,
     } = this.state;
     if (this.state.showWelcomeScreen === undefined)
       return <div className="App" />;
@@ -115,14 +114,16 @@ class App extends Component {
             numberOfEvents={numberOfEvents}
           />
         </div>
-        <OfflineAlert text={offlineText} />
-        {!navigator.onLine && (
-          <OfflineAlert
-            text={
-              'You are offline, so events may not be up to date'
-            }
-          />
-        )}
+        {/* <OfflineAlert text={offlineText} /> */}
+
+        <OfflineAlert
+        // text={
+        //   'You are offline, so events may not be up to date'
+        // }
+        >
+          hello
+        </OfflineAlert>
+
         <EventList events={events} />
         <WelcomeScreen
           showWelcomeScreen={this.state.showWelcomeScreen}
