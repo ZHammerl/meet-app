@@ -6,9 +6,8 @@
 }
 
 .header {
-  display: block;
+  display: flex;
   width: 100%;
-  text-align: justify;
   padding-left: 35px;
   position: fixed;
   left: 0;
