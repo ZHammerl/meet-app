@@ -1,31 +1,34 @@
 :root {
-    --primary-color: #83781b;
-    --secondary-color: #95b46a;
-    --tertiary-color: #172815;
-    --text-color-light: #f6fff6;
-  }
+  --primary-color: #83781b;
+  --secondary-color: #95b46a;
+  --tertiary-color: #172815;
+  --text-color-light: #f6fff6;
+}
 
-  .event {
-    padding: 10px 20px 35px;
-    margin-bottom: 10px;
-    text-align: left;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    position: relative;
-    background-color: #95b46a;
-  }
-  
-  .details-btn {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-    padding: 5px 8px;
-    border-radius: 4px;
-    outline: none;
-    cursor: pointer;
-    background-color: #83781b;
-  }
+.event {
+  padding: 10px 20px 35px;
+  margin-bottom: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+  background-color: #95b46a;
+}
+.event-link {
+  color: var(--tertiary-color);
+}
 
-  .description {
-    overflow-x: hidden;
-  }
+.details-btn {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  background-color: #83781b;
+}
+
+.description {
+  overflow-x: hidden;
+}

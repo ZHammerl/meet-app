@@ -52,10 +52,14 @@ class App extends Component {
     const accessToken = localStorage.getItem(
       'access_token'
     );
-    const isTokenValid = (await checkToken(accessToken))
-      .error
-      ? false
-      : true;
+    let isTokenValid;
+    if (accessToken && !navigator.onLine) {
+      isTokenValid = true;
+    } else {
+      isTokenValid = (await checkToken(accessToken)).error
+        ? false
+        : true;
+    }
     const searchParams = new URLSearchParams(
       window.location.search
     );
@@ -66,7 +70,6 @@ class App extends Component {
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
-          console.log('getEvents');
           this.setState({
             events: events.slice(
               0,
@@ -123,24 +126,28 @@ class App extends Component {
       numberOfEvents,
       events,
       offlineText,
+      showWelcomeScreen,
     } = this.state;
-    if (this.state.showWelcomeScreen === undefined)
+    console.log(showWelcomeScreen);
+    if (showWelcomeScreen === undefined)
       return <div className="App" />;
+    console.log(showWelcomeScreen);
     return (
       <div className="App">
         <Header />
-        <div className="city-number">
-          <CitySearch
-            locations={locations}
-            updateEvents={this.updateEvents}
-          />
-          <NumberOfEvents
-            updateEvents={this.updateEvents}
-            numberOfEvents={numberOfEvents}
-          />
-        </div>
+        {!showWelcomeScreen && (
+          <div className="city-number">
+            <CitySearch
+              locations={locations}
+              updateEvents={this.updateEvents}
+            />
+            <NumberOfEvents
+              updateEvents={this.updateEvents}
+              numberOfEvents={numberOfEvents}
+            />
+          </div>
+        )}
         <OfflineAlert text={offlineText} />
-
         <EventList events={events} />
         <WelcomeScreen
           showWelcomeScreen={this.state.showWelcomeScreen}

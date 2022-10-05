@@ -10,9 +10,9 @@ a {
 }
 .WelcomeScreen {
   position: fixed;
-  width: 100%;
+  width: 90%;
   height: 100%;
-  top: 10;
+  top: 150px;
   background: var(--primary-color);
 }
 .login-button {
