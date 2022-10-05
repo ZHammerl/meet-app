@@ -20,8 +20,32 @@ class App extends Component {
     locations: [],
     locationSelected: 'all',
     numberOfEvents: '20',
+    offlineText: '',
     showWelcomeScreen: undefined,
   };
+
+  // componentDidMount() {
+  //   //make sure it is mounted before populating the state
+  //   this.mounted = true;
+  //   const defaultEventNumber = this.state.numberOfEvents;
+  //   getEvents().then((events) => {
+  //     this.setState({
+  //       events: events.slice(0, defaultEventNumber),
+  //       locations: extractLocations(events),
+  //     });
+  //   });
+  //   if (!navigator.onLine) {
+  //     console.log('offline');
+  //     this.setState({
+  //       offlineText:
+  //         "Your're offline, so events may not be up to date",
+  //     });
+  //   } else {
+  //     this.setState({
+  //       offlineText: '',
+  //     });
+  //   }
+  // }
 
   async componentDidMount() {
     this.mounted = true;
@@ -98,6 +122,7 @@ class App extends Component {
       locations,
       numberOfEvents,
       events,
+      offlineText,
     } = this.state;
     if (this.state.showWelcomeScreen === undefined)
       return <div className="App" />;
@@ -114,15 +139,7 @@ class App extends Component {
             numberOfEvents={numberOfEvents}
           />
         </div>
-        {/* <OfflineAlert text={offlineText} /> */}
-
-        <OfflineAlert
-        // text={
-        //   'You are offline, so events may not be up to date'
-        // }
-        >
-          hello
-        </OfflineAlert>
+        <OfflineAlert text={offlineText} />
 
         <EventList events={events} />
         <WelcomeScreen

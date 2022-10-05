@@ -45,8 +45,7 @@ input[type='number'] {
 }
 
 .city-number {
-  top: 50;
-  /* margin: 120px 0 20px 0; */
+  margin: 120px 0 20px 0;
 }
 
 .name {
