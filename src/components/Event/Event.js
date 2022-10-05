@@ -21,7 +21,7 @@ class Event extends Component {
   };
 
   localTime = (date) => {
-    return new Date(date).toLocaleTimeString().slice(0, 5);
+    return new Date(date).toLocaleTimeString().slice(0, -3);
   };
 
   render() {
