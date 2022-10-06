@@ -4,6 +4,7 @@ import EventList from './components/EventList/EventList';
 import CitySearch from './components/CitySearch/CitySearch';
 import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen';
 import NumberOfEvents from './components/NumberOfEvents/NumberOfEvents';
+import { ScatterChart } from './components/ScatterChart/ScatterChart';
 import { Header } from './components/Header/Header';
 import { OfflineAlert } from './components/Alert/Alert';
 import {
@@ -12,16 +13,6 @@ import {
   checkToken,
   getAccessToken,
 } from './api';
-
-import {
-  ScatterChart,
-  Scatter,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
 
 class App extends Component {
   state = {
@@ -130,17 +121,6 @@ class App extends Component {
     });
   };
 
-  getData = () => {
-    const { locations, events } = this.state;
-    const data = locations.map((location) => {
-      const number = events.filter(
-        (event) => event.location === location
-      ).length;
-      const city = location.split(', ').shift();
-      return { city, number };
-    });
-    return data;
-  };
   render() {
     const {
       locations,
@@ -167,30 +147,10 @@ class App extends Component {
           </div>
         )}
         <OfflineAlert text={offlineText} />
-        <ResponsiveContainer height={300}>
-          <ScatterChart
-            margin={{
-              top: 20,
-              right: 20,
-              bottom: 10,
-              left: 10,
-            }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              type="category"
-              dataKey="city"
-              name="City"
-            />
-            <YAxis
-              type="number"
-              dataKey="number"
-              name="Number of events"
-              allowDecimals={false}
-            />
-            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={this.getData()} fill="#172815" />
-          </ScatterChart>
-        </ResponsiveContainer>
+        <ScatterChart
+          events={events}
+          locations={locations}
+        />
         <EventList events={events} />
         <WelcomeScreen
           showWelcomeScreen={this.state.showWelcomeScreen}
