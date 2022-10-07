@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   ScatterChart,
   Scatter,
@@ -8,55 +8,43 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
+// import { extractLocations } from '../../api';
 
-class ScatterChartView extends Component {
-  getData = (events, locations) => {
-    const data = locations.map((location) => {
-      const number = events.filter(
-        (event) => event.location === location
-      ).length;
-      const city = location.split(', ').shift();
-      return { city, number };
-    });
-    return data;
-  };
-
+export default class ScatterChartView extends PureComponent {
   render() {
-    const { events, locations } = this.props;
+    const { data } = this.props;
     return (
       <ResponsiveContainer height={300}>
-        <h4 className="ScatterChart-title">
-          No. of events in each city
-        </h4>
         <ScatterChart
           margin={{
             top: 20,
             right: 20,
-            bottom: 10,
-            left: 10,
+            bottom: 20,
+            left: 20,
           }}>
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid
+            stroke="#ccc"
+            strokeDasharray="2 2"
+          />
           <XAxis
             type="category"
             dataKey="city"
             name="City"
-            angle={270}
+            angle={315}
+            stroke="#172815"
+            textAnchor="end"
           />
           <YAxis
+            allowDecimals={false}
             type="number"
             dataKey="number"
             name="Number of events"
-            allowDecimals={false}
+            stroke="#172815"
           />
           <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-          <Scatter
-            data={this.getData(events, locations)}
-            fill="#172815"
-          />
+          <Scatter data={data} fill="#172815" />
         </ScatterChart>
       </ResponsiveContainer>
     );
   }
 }
-
-export default ScatterChartView;

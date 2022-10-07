@@ -51,53 +51,80 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true;
-    const accessToken = localStorage.getItem(
-      'access_token'
-    );
-    let isTokenValid;
-    if (accessToken && !navigator.onLine) {
-      isTokenValid = true;
-    } else {
-      isTokenValid = (await checkToken(accessToken)).error
-        ? false
-        : true;
-    }
-    const searchParams = new URLSearchParams(
-      window.location.search
-    );
-    const code = searchParams.get('code');
-    this.setState({
-      showWelcomeScreen: !(code || isTokenValid),
-    });
-    if ((code || isTokenValid) && this.mounted) {
-      getEvents().then((events) => {
-        if (this.mounted) {
-          this.setState({
-            events: events.slice(
-              0,
-              this.state.numberOfEvents
-            ),
-            locations: extractLocations(events),
-          });
-        }
-      });
-    }
+    /**
+     * if localhost => show EventList with mockData
+     * if offline =>
+     * - show EventList with entries from local storage
+     * - hide WelcomeScreen
+     * if logged in =>
+     *  - hide WelcomeScreen
+     *  - fetch events
+     *  - show EventList
+     * Else (not local, not offline, not logged in) => show WelcomeScreen
+     */
 
-    if (!navigator.onLine) {
-      console.log('offline');
+    const isLocalHost = window.location.href.startsWith(
+      'http://localhost'
+    );
+    const isOffline = !navigator.onLine;
+
+    if (isLocalHost) {
+      this.hideWelcomeScreen();
+      this.fetchEvents();
+      console.log('islocalhost');
+      return;
+    }
+    if (isOffline) {
       this.setState({
         offlineText:
           "Your're offline, so events may not be up to date",
       });
+      this.hideWelcomeScreen();
+      this.fetchEvents();
     } else {
-      this.setState({
-        offlineText: '',
-      });
+      const accessToken = localStorage.getItem(
+        'access_token'
+      );
+      const isLoggedIn = !(await checkToken(accessToken))
+        .error;
+      const searchParams = new URLSearchParams(
+        window.location.search
+      );
+      const code = searchParams.get('code');
+      if (isLoggedIn || code) {
+        this.hideWelcomeScreen();
+        this.fetchEvents();
+      } else {
+        this.setState({
+          showWelcomeScreen: true,
+        });
+        console.log('hello');
+      }
     }
   }
 
   componentWillUnmount() {
     this.mounted = false;
+  }
+
+  fetchEvents() {
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events: events.slice(
+            0,
+            this.state.numberOfEvents
+          ),
+          locations: extractLocations(events),
+        });
+      }
+    });
+  }
+
+  hideWelcomeScreen() {
+    this.setState({
+      showWelcomeScreen: false,
+    });
   }
   updateEvents = (location, eventCount) => {
     if (eventCount === undefined) {
@@ -113,8 +140,6 @@ class App extends Component {
           : events.filter(
               (event) => event.location === location
             );
-      console.log(locationEvents);
-      console.log(eventCount);
       this.setState({
         events: locationEvents.slice(0, eventCount),
         numberOfEvents: eventCount,
@@ -122,6 +147,18 @@ class App extends Component {
       });
     });
   };
+  getData() {
+    const { events, locations } = this.state;
+
+    const data = locations.map((location) => {
+      const number = events.filter(
+        (event) => event.location === location
+      ).length;
+      const city = location.split(', ').shift();
+      return { city, number };
+    });
+    return data;
+  }
 
   render() {
     const {
@@ -132,8 +169,7 @@ class App extends Component {
       showWelcomeScreen,
     } = this.state;
     console.log(locations);
-    if (showWelcomeScreen === undefined)
-      return <div className="App" />;
+    console.log(showWelcomeScreen);
     return (
       <div className="App">
         <Header />
@@ -151,18 +187,19 @@ class App extends Component {
         )}
         <OfflineAlert text={offlineText} />
         <ErrorBoundary>
-          <ScatterChartView
-            events={events}
-            locations={locations}
-          />
+          <ScatterChartView data={this.getData()} />
         </ErrorBoundary>
-        <EventList events={events} />
-        <WelcomeScreen
-          showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => {
-            getAccessToken();
-          }}
-        />
+
+        {!showWelcomeScreen && (
+          <EventList events={events} />
+        )}
+        {showWelcomeScreen && (
+          <WelcomeScreen
+            getAccessToken={() => {
+              getAccessToken();
+            }}
+          />
+        )}
       </div>
     );
   }

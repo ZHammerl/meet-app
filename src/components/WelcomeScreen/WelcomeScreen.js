@@ -1,8 +1,8 @@
 import React from 'react';
 import './WelcomeScreen.css';
 
-function WelcomeScreen(props) {
-  return props.showWelcomeScreen ? (
+function WelcomeScreen({ getAccessToken }) {
+  return (
     <div className="WelcomeScreen">
       <h1>Welcome to the Meet App</h1>
       <h4>
@@ -21,7 +21,7 @@ o.svg"
           </div>
           <button
             onClick={() => {
-              props.getAccessToken();
+              getAccessToken();
             }}
             rel="nofollow noopener"
             className="btn-text">
@@ -35,7 +35,7 @@ o.svg"
         Privacy policy
       </a>
     </div>
-  ) : null;
+  );
 }
 
 export default WelcomeScreen;
