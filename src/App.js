@@ -81,6 +81,7 @@ class App extends Component {
       });
       this.hideWelcomeScreen();
       this.fetchEvents();
+      return;
     } else {
       const accessToken = localStorage.getItem(
         'access_token'
@@ -94,6 +95,7 @@ class App extends Component {
       if (isLoggedIn || code) {
         this.hideWelcomeScreen();
         this.fetchEvents();
+        return;
       } else {
         this.setState({
           showWelcomeScreen: true,
