@@ -4,7 +4,7 @@ import EventList from './components/EventList/EventList';
 import CitySearch from './components/CitySearch/CitySearch';
 import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen';
 import NumberOfEvents from './components/NumberOfEvents/NumberOfEvents';
-import { ScatterChart } from './components/ScatterChart/ScatterChart';
+import ScatterChartView from './components/ScatterChartView/ScatterChartView';
 import { Header } from './components/Header/Header';
 import { OfflineAlert } from './components/Alert/Alert';
 import {
@@ -13,6 +13,8 @@ import {
   checkToken,
   getAccessToken,
 } from './api';
+
+import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -129,6 +131,7 @@ class App extends Component {
       offlineText,
       showWelcomeScreen,
     } = this.state;
+    console.log(locations);
     if (showWelcomeScreen === undefined)
       return <div className="App" />;
     return (
@@ -147,10 +150,12 @@ class App extends Component {
           </div>
         )}
         <OfflineAlert text={offlineText} />
-        <ScatterChart
-          events={events}
-          locations={locations}
-        />
+        <ErrorBoundary>
+          <ScatterChartView
+            events={events}
+            locations={locations}
+          />
+        </ErrorBoundary>
         <EventList events={events} />
         <WelcomeScreen
           showWelcomeScreen={this.state.showWelcomeScreen}
