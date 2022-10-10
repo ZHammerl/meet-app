@@ -5,6 +5,7 @@ import CitySearch from './components/CitySearch/CitySearch';
 import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen';
 import NumberOfEvents from './components/NumberOfEvents/NumberOfEvents';
 import ScatterChartView from './components/ScatterChartView/ScatterChartView';
+import PieChartView from './components/PieChartView/PieChart';
 import { Header } from './components/Header/Header';
 import { OfflineAlert } from './components/Alert/Alert';
 import {
@@ -71,7 +72,6 @@ class App extends Component {
     if (isLocalHost) {
       this.hideWelcomeScreen();
       this.fetchEvents();
-      console.log('islocalhost');
       return;
     }
     if (isOffline) {
@@ -170,8 +170,6 @@ class App extends Component {
       offlineText,
       showWelcomeScreen,
     } = this.state;
-    console.log(locations);
-    console.log(showWelcomeScreen);
     return (
       <div className="App">
         <Header />
@@ -189,7 +187,12 @@ class App extends Component {
         )}
         <OfflineAlert text={offlineText} />
         {!showWelcomeScreen && (
-          <ScatterChartView data={this.getData()} />
+          <div className="data-vis-wrapper">
+            <ErrorBoundary>
+              <PieChartView events={events} />
+            </ErrorBoundary>{' '}
+            <ScatterChartView data={this.getData()} />
+          </div>
         )}
         {!showWelcomeScreen && (
           <EventList events={events} />
