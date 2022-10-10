@@ -188,10 +188,9 @@ class App extends Component {
           </div>
         )}
         <OfflineAlert text={offlineText} />
-        <ErrorBoundary>
+        {!showWelcomeScreen && (
           <ScatterChartView data={this.getData()} />
-        </ErrorBoundary>
-
+        )}
         {!showWelcomeScreen && (
           <EventList events={events} />
         )}

@@ -14,7 +14,7 @@ export default class ScatterChartView extends PureComponent {
   render() {
     const { data } = this.props;
     return (
-      <ResponsiveContainer height={300}>
+      <ResponsiveContainer height={250}>
         <ScatterChart
           margin={{
             top: 20,
@@ -33,6 +33,7 @@ export default class ScatterChartView extends PureComponent {
             angle={315}
             stroke="#172815"
             textAnchor="end"
+            minTickGap={0}
           />
           <YAxis
             allowDecimals={false}
