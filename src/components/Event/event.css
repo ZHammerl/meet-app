@@ -1,6 +1,6 @@
 :root {
   --primary-color: #83781b;
-  --secondary-color: #95b46a;
+  --secondary-color: #617788;
   --tertiary-color: #172815;
   --text-color-light: #f6fff6;
 }
@@ -12,7 +12,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
-  background-color: #95b46a;
+  background-color: var(--secondary-color);
 }
 .event-link {
   color: var(--tertiary-color);

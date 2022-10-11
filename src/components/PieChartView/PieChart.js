@@ -28,11 +28,11 @@ function PieChartView({ events }) {
   };
 
   const COLORS = [
-    '#0088FE',
-    '#00C49F',
-    '#FFBB28',
-    '#FF8042',
-    '#C74B50',
+    '#B8E1FF',
+    '#617788',
+    '#94FBAB',
+    '#5C0029',
+    '#61304B',
   ];
 
   useEffect(() => {

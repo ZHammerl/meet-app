@@ -174,7 +174,7 @@ class App extends Component {
       <div className="App">
         <Header />
         {!showWelcomeScreen && (
-          <div className="city-number">
+          <div className="city-number input-wrapper">
             <CitySearch
               locations={locations}
               updateEvents={this.updateEvents}
