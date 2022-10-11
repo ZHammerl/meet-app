@@ -1,6 +1,6 @@
 :root {
   --primary-color: #83781b;
-  --secondary-color: #28536B;
+  --secondary-color: #28536b;
   --tertiary-color: #172815;
   --text-color-light: #f6fff6;
 }
@@ -27,7 +27,6 @@ p {
 .display-none {
   display: none;
 }
-
 
 input[type='text'],
 input[type='number'] {
@@ -79,6 +78,25 @@ input[type='number'] {
 }
 .recharts-surface {
   overflow: visible;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+.charts-btn {
+  right: 5px;
+  bottom: 5px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  background-color: var(--tertiary-color);
+  color: var(--text-color-light);
 }
 
 @media only screen and (min-width: 992px) {

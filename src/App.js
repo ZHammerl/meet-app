@@ -5,7 +5,7 @@ import CitySearch from './components/CitySearch/CitySearch';
 import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen';
 import NumberOfEvents from './components/NumberOfEvents/NumberOfEvents';
 import ScatterChartView from './components/ScatterChartView/ScatterChartView';
-import PieChartView from './components/PieChartView/PieChart';
+import PieChartView from './components/PieChartView/PieChartView';
 import { Header } from './components/Header/Header';
 import { OfflineAlert } from './components/Alert/Alert';
 import {
@@ -25,6 +25,7 @@ class App extends Component {
     numberOfEvents: '20',
     offlineText: '',
     showWelcomeScreen: undefined,
+    showCharts: false,
   };
 
   // componentDidMount() {
@@ -162,6 +163,10 @@ class App extends Component {
     return data;
   }
 
+  toggleChartView = () => {
+    this.setState({ showCharts: !this.state.showCharts });
+  };
+
   render() {
     const {
       locations,
@@ -169,7 +174,11 @@ class App extends Component {
       events,
       offlineText,
       showWelcomeScreen,
+      showCharts,
     } = this.state;
+    const buttonText = showCharts
+      ? 'Hide Charts'
+      : 'Show Charts';
     return (
       <div className="App">
         <Header />
@@ -186,14 +195,19 @@ class App extends Component {
           </div>
         )}
         <OfflineAlert text={offlineText} />
-        {!showWelcomeScreen && (
+        {this.state.showCharts && (
           <div className="data-vis-wrapper">
-            <ErrorBoundary>
-              <PieChartView events={events} />
-            </ErrorBoundary>{' '}
+            <PieChartView events={events} />
             <ScatterChartView data={this.getData()} />
           </div>
         )}
+        <div className="charts-btn-wrapper">
+          <button
+            onClick={this.toggleChartView}
+            className="charts-btn">
+            {buttonText}
+          </button>
+        </div>
         {!showWelcomeScreen && (
           <EventList events={events} />
         )}

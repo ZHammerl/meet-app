@@ -5,7 +5,6 @@
   --text-color-light: #f6fff6;
 }
 
-/* .Alert {
-    position: fixed;
-    top: 20px;
-  } */
+.Alert {
+  font-size: 13px;
+}

@@ -31,10 +31,11 @@ class NumberOfEvents extends Component {
         <label
           className="number-label"
           htmlFor="number-input">
-          Number of Events to display:
+          Number of Events
         </label>
         <input
           type="number"
+          id="number-input"
           className="number number-input"
           value={numberOfEvents}
           onChange={this.handleInputChange}

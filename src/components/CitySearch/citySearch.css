@@ -5,17 +5,6 @@
   --text-color-light: #f6fff6;
 }
 
-.city {
-  width: 250px;
-}
-
-.CitySearch {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 250px;
-  max-width: 250px;
-}
-
 .suggestions {
   width: 250px;
   /* position: absolute; */
@@ -43,4 +32,26 @@
 
 .suggestions > li:hover {
   background-color: #bcdcdb;
+}
+
+.CitySearch {
+  position: relative;
+  font-size: 16px;
+}
+
+.label {
+  font-size: 15px;
+  margin-left: 5px;
+  color: black;
+}
+
+.city {
+  font-size: 16px;
+  margin-top: 5px;
+  height: 30px;
+  width: 250px;
+  text-indent: 10px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  display: block;
 }
