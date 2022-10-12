@@ -37,6 +37,29 @@ function PieChartView({ events }) {
     '#61304B',
   ];
 
+  const renderCustomizedLabel = ({
+    x,
+    y,
+    name,
+    percent,
+  }) => {
+    if (percent > 0) {
+      return (
+        <text
+          x={x}
+          y={y}
+          dy={-10}
+          fontSize="80%"
+          fill="black"
+          fontWeight="bold"
+          textAnchor="end"
+          dominantBaseline="central">
+          {`${name} ${(percent * 100).toFixed(0)}%`}
+        </text>
+      );
+    }
+  };
+
   useEffect(() => {
     setData(() => getData());
   }, [events]);
@@ -52,15 +75,8 @@ function PieChartView({ events }) {
             cx="50%"
             cy="50%"
             labelLine={false}
-            label={({ name, percent }) => {
-              if (percent > 0) {
-                return `${name} ${(percent * 100).toFixed(
-                  0
-                )}%`;
-              }
-            }}
-            outerRadius={80}
-            fill="#8884d8"
+            label={renderCustomizedLabel}
+            outerRadius={100}
             dataKey="value">
             {data.map((entry, index) => (
               <Cell
