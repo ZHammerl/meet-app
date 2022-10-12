@@ -102,7 +102,6 @@ class App extends Component {
         this.setState({
           showWelcomeScreen: true,
         });
-        console.log('hello');
       }
     }
   }

@@ -85,7 +85,8 @@ p {
   background-color: var(--tertiary-color);
   color: var(--text-color-light);
 }
-.charts-btn:hover {
+.charts-btn:hover,
+.charts-btn:focus {
   opacity: 0.8;
   box-shadow: 0 0 6px #fcfff946;
 }

@@ -36,22 +36,32 @@ function PieChartView({ events }) {
     '#61304B',
   ];
 
+  const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
-    x,
-    y,
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
     name,
     percent,
   }) => {
+    const radius =
+      innerRadius + (outerRadius - innerRadius) * 0.5;
+    const cos = Math.cos(-RADIAN * midAngle);
+    const x = cx + 1.5 * radius * cos;
+    const y =
+      cy + 1.5 * radius * Math.sin(-midAngle * RADIAN);
     if (percent > 0) {
       return (
         <text
           x={x}
           y={y}
-          dy={-10}
+          dy={10}
           fontSize="80%"
           fill="black"
           fontWeight="bold"
-          textAnchor="end"
+          textAnchor={x > cx ? 'start' : 'end'}
           dominantBaseline="central">
           {`${name} ${(percent * 100).toFixed(0)}%`}
         </text>
@@ -73,8 +83,9 @@ function PieChartView({ events }) {
             data={data}
             cx="50%"
             cy="50%"
-            labelLine={false}
+            labelLine={true}
             label={renderCustomizedLabel}
+            innerRadius={70}
             outerRadius={100}
             dataKey="value">
             {data.map((entry, index) => (

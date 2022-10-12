@@ -15,7 +15,6 @@
   background-color: var(--secondary-color);
 }
 
-
 .details-btn {
   position: absolute;
   right: 5px;
@@ -27,7 +26,8 @@
   background-color: #83781b;
 }
 
-.details-btn :hover {
+.details-btn:hover,
+.details-btn:focus {
   opacity: 0.8;
   box-shadow: 0 0 6px #95b46a18;
 }

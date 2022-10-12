@@ -18,7 +18,9 @@ export default class ScatterChartView extends PureComponent {
         <h4 className="scatter-chart-title">
           Events by City
         </h4>
-        <ResponsiveContainer className='scatterchart-responsive' height={250}>
+        <ResponsiveContainer
+          className="scatterchart-responsive"
+          height={250}>
           <ScatterChart
             margin={{
               top: 20,
@@ -47,7 +49,7 @@ export default class ScatterChartView extends PureComponent {
               stroke="black"
             />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={data} fill="black" />
+            <Scatter data={data} fill="#B8E1FF" />
           </ScatterChart>
         </ResponsiveContainer>
       </div>
