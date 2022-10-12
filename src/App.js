@@ -14,6 +14,7 @@ import {
   checkToken,
   getAccessToken,
 } from './api';
+import './nprogress.css';
 
 import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 

@@ -28,18 +28,6 @@ p {
   display: none;
 }
 
-input[type='text'],
-input[type='number'] {
-  padding: 8px 6px 8px 10px;
-  border-radius: 4px;
-  outline: none;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  line-height: 20px;
-  align-self: center;
-  height: 38px;
-}
-
 .city-number {
   margin: 120px 0 20px 0;
 }
@@ -78,6 +66,7 @@ input[type='number'] {
 }
 .recharts-surface {
   overflow: visible;
+  max-height: 350px;
 }
 
 .input-wrapper {
@@ -89,14 +78,17 @@ input[type='number'] {
   position: relative;
 }
 .charts-btn {
-  right: 5px;
-  bottom: 5px;
+  margin: 20px;
   padding: 5px 8px;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
   background-color: var(--tertiary-color);
   color: var(--text-color-light);
+}
+
+.charts-btn :hover{
+  
 }
 
 @media only screen and (min-width: 992px) {

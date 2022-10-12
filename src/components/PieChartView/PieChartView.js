@@ -6,6 +6,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+import './pieChartView.css';
+
 function PieChartView({ events }) {
   const [data, setData] = useState([]);
 
@@ -39,32 +41,35 @@ function PieChartView({ events }) {
     setData(() => getData());
   }, [events]);
   return (
-    <ResponsiveContainer height={400}>
-      <PieChart>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={({ name, percent }) => {
-            if (percent > 0) {
-              return `${name} ${(percent * 100).toFixed(
-                0
-              )}%`;
-            }
-          }}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value">
-          {data.map((entry, index) => (
-            <Cell
-              key={`cell-${index}`}
-              fill={COLORS[index % COLORS.length]}
-            />
-          ))}
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
+    <div className="pie-chart-container">
+      <h4 className="pie-chart-title">Events by Topic</h4>
+      <ResponsiveContainer height={400}>
+        <PieChart>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            label={({ name, percent }) => {
+              if (percent > 0) {
+                return `${name} ${(percent * 100).toFixed(
+                  0
+                )}%`;
+              }
+            }}
+            outerRadius={80}
+            fill="#8884d8"
+            dataKey="value">
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 
