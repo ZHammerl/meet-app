@@ -29,7 +29,7 @@ o.svg"
           </button>
         </div>
       </div>
-      <a
+      <a className='privacy-policy'
         href="https://zhammerl.github.io/meet-app/privacy.html"
         rel="nofollow noopener">
         Privacy policy

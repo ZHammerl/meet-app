@@ -43,8 +43,10 @@ function PieChartView({ events }) {
   return (
     <div className="pie-chart-container">
       <h4 className="pie-chart-title">Events by Topic</h4>
-      <ResponsiveContainer height={400}>
-        <PieChart>
+      <ResponsiveContainer
+        className="pie-chart-background"
+        height={300}>
+        <PieChart width={300} height={300}>
           <Pie
             data={data}
             cx="50%"

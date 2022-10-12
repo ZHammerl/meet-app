@@ -29,6 +29,15 @@
   background-color: #83781b;
 }
 
+.details-btn :hover {
+  opacity: 0.8;
+  box-shadow: 0 0 6px #95b46a18;
+}
+
 .description {
   overflow-x: hidden;
+}
+
+.icons {
+  vertical-align: middle;
 }

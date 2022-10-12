@@ -67,3 +67,7 @@ a {
   height: 100%;
   text-align: center;
 }
+
+.privacy-policy {
+  color: var(--text-color-light);
+}

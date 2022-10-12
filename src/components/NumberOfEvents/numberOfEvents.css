@@ -13,11 +13,12 @@
   font-size: 15px;
   margin-left: 5px;
   color: black;
+  font-weight: bold;
 }
 
 input {
   font-size: 15px;
-  margin-top: 5px;
+  margin-top: 10px;
   height: 30px;
   text-indent: 10px;
   border-radius: 5px;

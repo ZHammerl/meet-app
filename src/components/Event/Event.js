@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './event.css';
+import { BsCalendarEvent } from 'react-icons/bs';
+import { BiTimeFive } from 'react-icons/bi';
+import { IoLocationOutline } from 'react-icons/io5';
 
 class Event extends Component {
   constructor(props) {
@@ -29,14 +32,23 @@ class Event extends Component {
       <div className="event">
         <h2 className="event-title">{event.summary}</h2>
         <div className="dateTime">
-          <b> {this.localDate(event.start.dateTime)}</b>
+          <b>
+            <BsCalendarEvent className="icons" />
+            &nbsp;{this.localDate(event.start.dateTime)}
+          </b>
           <br />
-          <b> {this.localTime(event.start.dateTime)} </b>(
-          {event.start.timeZone})
+          <b>
+            <BiTimeFive className="icons" />
+            &nbsp;{this.localTime(
+              event.start.dateTime
+            )}{' '}
+          </b>
+          ({event.start.timeZone})
         </div>
-        <p className="location">
-          <b>{event.location}</b>
-        </p>
+        <b className="location-detail">
+          <IoLocationOutline className="icons" />
+          &nbsp;{event.location}
+        </b>
         {this.state.show && (
           <div className="details-container">
             <h4 className="event-about">

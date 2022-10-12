@@ -35,7 +35,7 @@ export default class ScatterChartView extends PureComponent {
               dataKey="city"
               name="City"
               angle={315}
-              stroke="#172815"
+              stroke="black"
               textAnchor="end"
               minTickGap={0}
             />
@@ -44,10 +44,10 @@ export default class ScatterChartView extends PureComponent {
               type="number"
               dataKey="number"
               name="Number of events"
-              stroke="#172815"
+              stroke="black"
             />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={data} fill="#172815" />
+            <Scatter data={data} fill="black" />
           </ScatterChart>
         </ResponsiveContainer>
       </div>
