@@ -65,11 +65,15 @@ p {
 .data-vis-wrapper .recharts-responsive-container {
   min-width: 100%;
   display: flex;
+  margin: 0;
 }
 .recharts-surface {
   overflow: visible;
 }
 
+.recharts-wrapper {
+  min-width: 100%;
+}
 .input-wrapper {
   display: flex;
   flex-direction: row;
@@ -98,8 +102,10 @@ p {
   }
   .data-vis-wrapper .recharts-responsive-container {
     flex-basis: 50%;
-    max-width: 50%;
     min-width: auto;
     margin: 0 auto;
+  }
+  .scatterchart-responsive {
+    max-width: 90%;
   }
 }

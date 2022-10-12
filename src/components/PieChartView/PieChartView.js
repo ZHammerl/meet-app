@@ -25,7 +25,6 @@ function PieChartView({ events }) {
       ).length;
       return { name: genre, value };
     });
-    console.log(data);
     return data;
   };
 

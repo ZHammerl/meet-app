@@ -18,7 +18,7 @@ export default class ScatterChartView extends PureComponent {
         <h4 className="scatter-chart-title">
           Events by City
         </h4>
-        <ResponsiveContainer height={250}>
+        <ResponsiveContainer className='scatterchart-responsive' height={250}>
           <ScatterChart
             margin={{
               top: 20,
