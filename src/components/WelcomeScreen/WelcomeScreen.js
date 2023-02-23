@@ -20,7 +20,7 @@ function WelcomeScreen({ getAccessToken }) {
       <p>
         No user information or personal calenders are
         accessed, saved or used within the application. You
-        only need to log in because that whole OAuth login
+        only need to log in because the OAuth login
         is part of the study project.
       </p>
       <div className="button_cont" align="center">
@@ -49,7 +49,7 @@ o.svg"
         (https://www.googleapis.com/auth/calendar.events.readonly).
       </p>
       <p>
-        The author is{" "}
+        The author of this app is{" "}
         <a
           className="link"
           target="_blank"
@@ -66,7 +66,7 @@ o.svg"
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/Zhammerl/meet-app">
-          Github repo
+          github repo
         </a>
         .
       </p>
