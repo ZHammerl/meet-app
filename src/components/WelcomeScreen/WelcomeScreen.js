@@ -54,7 +54,7 @@ o.svg"
           className="link"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://Zhammerl.github.io/portfolio-website/index.html">
+          href="https://ZHammerl.github.io/portfolio-website/index.html">
           Franziska Hammerl
         </a>
         .
@@ -65,7 +65,7 @@ o.svg"
           className="link"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/Zhammerl/meet-app">
+          href="https://github.com/ZHammerl/meet-app">
           github repo
         </a>
         .
